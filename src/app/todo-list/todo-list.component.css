@@ -1,0 +1,12 @@
+.todo-input {
+  height: 2em;
+  margin-right: 20px;
+}
+
+.primary-button {
+  padding: 10px;
+  border: solid 1px var(--primary-color);
+  background: var(--primary-color);
+  border-radius: 8px;
+  cursor: pointer;
+}
