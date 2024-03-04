@@ -5,10 +5,12 @@
   border: 1px solid #ddd;
   margin: 10px 0;
 }
+
 .todo-description {
   margin-left: 10px;
   color: #666;
 }
+
 .todo-item input {
   margin-right: 10px;
 }
@@ -32,6 +34,22 @@
   border-radius: 8px;
   cursor: pointer;
 }
+
 .delete-button:hover {
   background: darkred;
+}
+
+.details-button {
+  text-decoration: none;
+  margin-left: 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.details-button:hover {
+  background: #0056b3;
 }

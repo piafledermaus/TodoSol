@@ -1,15 +1,6 @@
 <form class="todo-form">
-  <input
-    class="todo-input"
-    type="text"
-    placeholder="Inserisci todo"
-    #todoInput
-  />
-  <button
-    class="primary-button"
-    type="button"
-    (click)="addTodo(todoInput.value)"
-  >
+  <input class="todo-input" type="text" placeholder="Inserisci todo" #todoInput />
+  <button class="primary-button" type="button" (click)="addTodo(todoInput.value)">
     Aggiungi
   </button>
 </form>
@@ -17,24 +8,14 @@
   <h2>Lista Todo da completare</h2>
   <ul>
     @for (todo of todos; track todo.id) {
-    <!-- Pass the title and the desc to the child component -->
-    <ag-todo-list-item
-      [todo]="todo"
-      (todoCompleted)="completeTodo($event)"
-    ></ag-todo-list-item>
+    <ag-todo [todo]="todo" (todoCompleted)="completeTodo($event)"></ag-todo>
     }
   </ul>
   <h2>Lista Todo completati</h2>
   @if (todosCompleted.length > 0) {
   <ul>
     @for (todo of todosCompleted; track todo.id) {
-    <!-- Pass the title and the desc to the child component -->
-    <ag-todo-list-item
-      [todo]="todo"
-      (todoUncompleted)="uncompleteTodo($event)"
-      (todoDeleted)="deleteTodo($event)"
-    ></ag-todo-list-item>
-    <!-- button to delete the todo -->
+    <ag-todo [todo]="todo" (todoUncompleted)="uncompleteTodo($event)" (todoDeleted)="deleteTodo($event)"></ag-todo>
     }
   </ul>
   } @else {

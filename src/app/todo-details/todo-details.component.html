@@ -1,0 +1,19 @@
+@if (todo) {
+<div class="todo-item">
+    <h2 class="todo-title">{{ todo.title }}</h2>
+    <p class="todo-details">{{ todo.details }}</p>
+    <div class="todo-meta">
+        <p class="todo-status" [class]="todoStatusClasses">Status: {{ todo.completed ? 'Completed' : 'Not Completed' }}
+        </p>
+        @if (todo.dueDate) {
+        <p class="todo-due-date">Due Date: {{ todo.dueDate | date }}</p>
+        }
+    </div>
+</div>
+} @else {
+<p>Todo non trovato</p>
+}
+<div style="margin-top: 20px; text-align: right;">
+    <a class="back-button" routerLink="" routerLinkActive="active">Torna
+        alla lista</a>
+</div>
