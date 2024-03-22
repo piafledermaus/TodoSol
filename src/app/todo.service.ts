@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TODOS } from './mock.todos';
-import { Todo } from './todo';
+import { ITodo } from './todo';
 
 @Injectable({
   providedIn: 'root',
@@ -16,12 +16,24 @@ export class TodoService {
     return TODOS.find((todo) => todo.id === id);
   }
 
-  updateTodo(todo: Todo) {
+  addTodo(todo: ITodo) {
+    // get a new id
+    let id = 1;
+    for (let t of TODOS) {
+      if (t.id >= id) {
+        id = t.id + 1;
+      }
+    }
+    todo.id = id;
+    TODOS.push(todo);
+  }
+
+  updateTodo(todo: ITodo) {
     let index = TODOS.findIndex((t) => t.id === todo.id);
     TODOS[index] = todo;
   }
 
-  deleteTodo(todo: Todo) {
+  deleteTodo(todo: ITodo) {
     let index = TODOS.findIndex((t) => t.id === todo.id);
     TODOS.splice(index, 1);
   }

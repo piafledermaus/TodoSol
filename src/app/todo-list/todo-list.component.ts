@@ -1,62 +1,45 @@
 import { Component, Input, afterNextRender, afterRender } from '@angular/core';
 import { TodoListItemComponent as TodoComponent } from '../todo/todo.component';
-import { Todo } from '../todo';
+import { ITodo, Todo } from '../todo';
 import { TodoService } from '../todo.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ag-todo-list',
   standalone: true,
-  imports: [TodoComponent],
+  imports: [TodoComponent, FormsModule],
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.css',
 })
 export class TodoListComponent {
-  allTodos: Todo[] = [];
-  todos: Todo[] = [];
-  todosCompleted: Todo[] = [];
+  todos: ITodo[] = [];
+
+  todoModel: Todo = Todo.defaultTodo();
 
   constructor(private todoService: TodoService) {
-    this.allTodos = todoService.getTodos();
-    for (let todo of this.allTodos) {
-      if (todo.completed) {
-        this.todosCompleted.push(todo);
-      } else {
-        this.todos.push(todo);
-      }
-    }
+    this.todos = todoService.getTodos();
   }
 
-  addTodo(todo: string) {
-    let newTodo: Todo = {
-      id: this.allTodos.length + 1,
-      title: todo,
-      details: '',
-      completed: false,
-    };
-
-    this.allTodos.push(newTodo);
-    this.todos.push(newTodo);
+  addTodoForm() {
+    this.todoService.addTodo(this.todoModel);
+    this.todoModel = Todo.defaultTodo();
+    this.todos = this.todoService.getTodos();
   }
 
-  completeTodo(todo: Todo) {
+  completeTodo(todo: ITodo) {
     todo.completed = true;
-    this.todosCompleted.push(todo);
-    this.todos = this.todos.filter((t) => t.id !== todo.id);
     this.todoService.updateTodo(todo);
+    this.todos = this.todoService.getTodos();
   }
 
-  uncompleteTodo(todo: Todo) {
+  uncompleteTodo(todo: ITodo) {
     todo.completed = false;
-    this.todos.push(todo);
-    this.todosCompleted = this.todosCompleted.filter((t) => t.id !== todo.id);
     this.todoService.updateTodo(todo);
+    this.todos = this.todoService.getTodos();
   }
 
-  deleteTodo(todo: Todo) {
-    console.log('Deleting todo', todo);
-    this.allTodos = this.allTodos.filter((t) => t.id !== todo.id);
-    this.todos = this.todos.filter((t) => t.id !== todo.id);
-    this.todosCompleted = this.todosCompleted.filter((t) => t.id !== todo.id);
+  deleteTodo(todo: ITodo) {
     this.todoService.deleteTodo(todo);
+    this.todos = this.todoService.getTodos();
   }
 }

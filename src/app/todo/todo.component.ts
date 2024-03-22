@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { Todo } from '../todo';
+import { ITodo } from '../todo';
 
 @Component({
   selector: 'ag-todo',
@@ -10,14 +10,10 @@ import { Todo } from '../todo';
   styleUrl: './todo.component.css',
 })
 export class TodoListItemComponent {
-  @Input({ required: true }) todo!: Todo;
-  @Output() todoCompleted = new EventEmitter<Todo>();
-  @Output() todoUncompleted = new EventEmitter<Todo>();
-  @Output() todoDeleted = new EventEmitter<Todo>();
-
-  ngOnDestroy() {
-    console.log('Destroying the todo', this.todo);
-  }
+  @Input({ required: true }) todo!: ITodo;
+  @Output() todoCompleted = new EventEmitter<ITodo>();
+  @Output() todoUncompleted = new EventEmitter<ITodo>();
+  @Output() todoDeleted = new EventEmitter<ITodo>();
 
   onTodoChange(event: Event) {
     const el = event.target as HTMLInputElement;

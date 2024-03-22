@@ -1,52 +1,53 @@
 .todo-item {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 .todo-title {
-    font-size: 20px;
-    font-weight: bold;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .todo-details {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .todo-meta {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
 }
 
 .todo-status {
-    display: inline-block;
-    font-size: 14px;
-    text-align: right;
+  display: inline-block;
+  font-size: 14px;
+  text-align: right;
 }
 
 .todo-status-completed {
-    color: green;
+  color: green;
 }
 
 .todo-status-incompleted {
-    color: red;
+  color: red;
 }
 
 .todo-due-date {
-    display: inline-block;
-    font-size: 14px;
-    color: #666;
-    text-align: right;
+  display: inline-block;
+  font-size: 14px;
+  color: #666;
+  text-align: right;
 }
 
 .back-button {
-    text-decoration: none;
-    margin-left: 20px;
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 8px;
-    cursor: pointer;
+  text-decoration: none;
+  margin-left: 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
 }

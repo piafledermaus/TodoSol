@@ -1,6 +1,8 @@
 .todo-input {
   height: 2em;
-  margin-right: 20px;
+  margin-bottom: 1em;
+  width: 100%;
+  display: block;
 }
 
 .primary-button {

@@ -1,24 +1,41 @@
-<form class="todo-form">
-  <input class="todo-input" type="text" placeholder="Inserisci todo" #todoInput />
-  <button class="primary-button" type="button" (click)="addTodo(todoInput.value)">
-    Aggiungi
-  </button>
+<form class="todo-form" (ngSubmit)="addTodoForm()" #todoForm="ngForm">
+  <input
+    class="todo-input"
+    type="text"
+    placeholder="Inserisci Titolo"
+    name="title"
+    [(ngModel)]="todoModel.title"
+  />
+  <input
+    class="todo-input"
+    type="text"
+    placeholder="Inserisci Descrizione"
+    name="description"
+    [(ngModel)]="todoModel.details"
+  />
+  <input
+    class="todo-input"
+    type="date"
+    name="dueDate"
+    [(ngModel)]="todoModel.dueDate"
+  />
+  <input class="primary-button" type="submit" value="Aggiungi" />
 </form>
 <section>
   <h2>Lista Todo da completare</h2>
   <ul>
-    @for (todo of todos; track todo.id) {
+    @for (todo of todos; track todo.id) { @if (!todo.completed) {
     <ag-todo [todo]="todo" (todoCompleted)="completeTodo($event)"></ag-todo>
-    }
+    }}
   </ul>
   <h2>Lista Todo completati</h2>
-  @if (todosCompleted.length > 0) {
   <ul>
-    @for (todo of todosCompleted; track todo.id) {
-    <ag-todo [todo]="todo" (todoUncompleted)="uncompleteTodo($event)" (todoDeleted)="deleteTodo($event)"></ag-todo>
-    }
+    @for (todo of todos; track todo.id) { @if (todo.completed) {
+    <ag-todo
+      [todo]="todo"
+      (todoUncompleted)="uncompleteTodo($event)"
+      (todoDeleted)="deleteTodo($event)"
+    ></ag-todo>
+    } }
   </ul>
-  } @else {
-  <p>Nessun todo completato</p>
-  }
 </section>
